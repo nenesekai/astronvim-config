@@ -9,4 +9,26 @@ return {
   --     require("lsp_signature").setup()
   --   end,
   -- },
+
+  {
+    "EdenEast/nightfox.nvim",
+    config = function()
+      require("nightfox").setup {
+        options = {
+          transparent = not vim.g.neovide,
+        },
+      }
+    end,
+  },
+  {
+    "smoka7/hop.nvim",
+    version = "*",
+    opts = {},
+  },
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   cmd = "Copilot",
+  --   event = "InsertEnter",
+  --   config = function() require("copilot").setup {} end,
+  -- },
 }

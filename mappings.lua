@@ -32,6 +32,44 @@ return {
     ["<leader>b"] = { name = "Buffers" },
     -- quick save
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+
+    -- Open Alpha Automatically When No More Buffers
+    ["<leader>c"] = {
+      function()
+        local bufs = vim.fn.getbufinfo { buflisted = true }
+        require("astronvim.utils.buffer").close(0)
+        if require("astronvim.utils").is_available "alpha-nvim" and not bufs[2] then require("alpha").start(true) end
+      end,
+      desc = "Close buffer",
+    },
+
+    -- Hop Related Settings
+    ["H"] = {
+      function()
+        require("hop").hint_char2 {
+          direction = require("hop.hint").HintDirection.BEFORE_CURSOR,
+          current_line_only = true,
+        }
+      end,
+    },
+    ["L"] = {
+      function()
+        require("hop").hint_char2 { direction = require("hop.hint").HintDirection.AFTER_CURSOR, current_line_only = true }
+      end,
+    },
+    ["f"] = {
+      function() require("hop").hint_patterns {} end,
+    },
+    ["J"] = {
+      function()
+        require("hop").hint_lines { direction = require("hop.hint").HintDirection.AFTER_CURSOR, keys = "wefjio" }
+      end,
+    },
+    ["K"] = {
+      function()
+        require("hop").hint_lines { direction = require("hop.hint").HintDirection.BEFORE_CURSOR, keys = "wefjio" }
+      end,
+    },
   },
   t = {
     -- setting a mapping to false will disable it

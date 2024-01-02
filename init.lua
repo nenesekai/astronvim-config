@@ -1,3 +1,4 @@
+local options = require "user.options"
 return {
   -- Configure AstroNvim updates
   updater = {
@@ -18,7 +19,7 @@ return {
   },
 
   -- Set colorscheme to use
-  colorscheme = "astrodark",
+  colorscheme = "nordfox",
 
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
@@ -81,5 +82,7 @@ return {
     --     ["~/%.config/foo/.*"] = "fooscript",
     --   },
     -- }
+
+    if vim.g.neovide then vim.o.guifont = "Hack Nerd Font:h16" end
   end,
 }
